@@ -1,0 +1,5 @@
+- docker file
+- bash file
+- upload zip to s3 
+- upload layer from s3
+- increase lambda timeout to 1 min

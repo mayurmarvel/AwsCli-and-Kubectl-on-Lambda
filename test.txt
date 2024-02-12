@@ -1,0 +1,8 @@
+aws lambda publish-layer-version --layer-name awscli_bash_layer --zip-file fileb://layer.zip --compatible-runtimes amazon-linux-2023
+
+https://kodekloud.com/community/t/i-cant-login-cli-in-my-terminal/410857/4
+
+
+aws lambda update-function-configuration \
+    --function-name myBashTest \
+    --layers arn:arn:aws:lambda:us-east-1:544308776655:layer:my_config_layer:1
