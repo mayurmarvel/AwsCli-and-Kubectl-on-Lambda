@@ -1,14 +1,18 @@
-#perform update & install tools (Ubuntu)
+#perform update & install tools (Al2023)
 # change the PACKAGE MANAGER acc to ur OS
-apt update -y && apt install -y zip unzip
+sudo dnf update -y && dnf install -y zip unzip
 
-mkdir -p kube && cd kube
+sudo mkdir -p kubectl_layer && cd kubectl_layer
 
 #download kubectl
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 
 #give executable permissions
-chmod +x kubectl
+sudo chmod +x kubectl
+
+mkdir -p bin
+
+sudo ln -sf "$(pwd)/kubectl" "$(pwd)/bin/kubectl"
 
 #zip the file
-zip -r kubectl_layer.zip .
+sudo zip --symlinks -r kubectl_layer.zip .

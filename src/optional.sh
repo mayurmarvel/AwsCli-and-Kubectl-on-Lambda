@@ -1,3 +1,6 @@
+# optional functions that u can check and play
+
+
 function handler () {
     EVENT_DATA=$1
     DATA=`/opt/awscli/aws/aws --version`
@@ -8,6 +11,13 @@ function handler () {
 function handler () {
     EVENT_DATA=$1
     DATA=`/opt/kubectl version --client`
+    RESPONSE="{\"statusCode\": 200, \"body\": \"$DATA\"}"
+    echo $RESPONSE
+}
+
+function handler () {
+    EVENT_DATA=$1
+    DATA=`openssl version`
     RESPONSE="{\"statusCode\": 200, \"body\": \"$DATA\"}"
     echo $RESPONSE
 }
@@ -34,11 +44,11 @@ function handler () {
     mkdir /tmp/aws
     mkdir /tmp/kube
     
-    #configuring Aws Cli
-    echo "[default]" > /tmp/aws/config
-    echo "aws_access_key_id=$SECRET_ACCESS_KEY_ID" >> /tmp/aws/config
-    echo "aws_secret_access_key=$SECRET_ACCESS_KEY" >> /tmp/aws/config
-    export AWS_CONFIG_FILE=/tmp/aws/config
+    # #configuring Aws Cli
+    # echo "[default]" > /tmp/aws/config
+    # echo "aws_access_key_id=$SECRET_ACCESS_KEY_ID" >> /tmp/aws/config
+    # echo "aws_secret_access_key=$SECRET_ACCESS_KEY" >> /tmp/aws/config
+    # export AWS_CONFIG_FILE=/tmp/aws/config
 
     
 

@@ -6,14 +6,17 @@ WORKDIR /tmp
 
 
 #perform update & install tools
-RUN yum update -y \
-    && yum install -y zip unzip
+RUN dnf update -y \
+    && dnf install -y zip unzip
 
 
 # Install aws cli
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscli-bundle.zip"
 RUN unzip awscli-bundle.zip
 RUN ./aws/install -i /opt/awscli -b /opt/awscli/aws
+
+RUN mkdir -p /opt/bin
+RUN ln -s /opt/awscli/aws/aws /opt/bin/aws
 
 RUN rm -rf /opt/awscli/v2/*/dist/awscli/examples
 

@@ -13,3 +13,5 @@
 - Go to your lambda function and add layer and choose these layers.
 
 - add those layers to your function 
+
+- Now run the Function
