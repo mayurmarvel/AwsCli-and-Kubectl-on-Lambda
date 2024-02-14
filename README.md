@@ -1,4 +1,4 @@
-# Running AWS CLI & Kubectl on AWS Lambda
+# Running AWS CLI & Kubectl & OpenSSL on AWS Lambda
 
 NOTE : The Builds are availabe to download under Github Releases 🔽
 ### Table of Contents
