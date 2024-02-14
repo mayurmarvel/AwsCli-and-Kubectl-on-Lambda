@@ -5,9 +5,9 @@ NOTE : The Builds are availabe to download under Github Releases 🔽
 
 ➡️[Preparing the Layers](./prepareLayers.md)
 
-➡️[Creating lambda Function](./modifyingUSerData.md)
+➡️[Creating lambda Function](./createFunction.md)
 
-➡️[Uploading Layers and Adding it to functions](./wpCli.md)
+➡️[Uploading Layers and Adding it to functions](./uploadLayers.md)
 
 
 ### Folder Structure
