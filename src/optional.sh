@@ -36,6 +36,8 @@ function handler () {
 }
 
 
+# configuring eks, kubectl openssl 
+
 function handler () {
     #executables
     aws=/opt/awscli/aws/aws
@@ -51,9 +53,13 @@ function handler () {
     # echo "aws_secret_access_key=$SECRET_ACCESS_KEY" >> /tmp/aws/config
     # export AWS_CONFIG_FILE=/tmp/aws/config
 
+    # awk '{gsub("command: aws", "command: $aws")}1' /tmp/kube/config > /tmp/kube/temp && mv -f /tmp/kube/temp /tmp/kube/config
     
+    # aws eks --region <region> update-kubeconfig --name <cluster-name> --kubeconfig </tmp/kube/kubeconfig>
 
-    DATA2=`$aws s3 mb s3://gtttttgsgsg --region us-east-1`
+    # export KUBECONFIG="/tmp/kube/config"
+
+    # DATA2=`$aws s3 mb s3://gtttttgsgsg --region us-east-1`
     DATA1=`$aws s3 ls`
     
     RESPONSE="{\"statusCode\": 200, \"body\": \"$DATA1\"}"
