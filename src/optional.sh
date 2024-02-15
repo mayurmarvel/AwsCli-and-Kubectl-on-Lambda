@@ -17,6 +17,7 @@ function handler () {
 
 function handler () {
     EVENT_DATA=$1
+    export LD_LIBRARY_PATH=/opt/lib64/:$LD_LIBRARY_PATH
     DATA=`openssl version`
     RESPONSE="{\"statusCode\": 200, \"body\": \"$DATA\"}"
     echo $RESPONSE
