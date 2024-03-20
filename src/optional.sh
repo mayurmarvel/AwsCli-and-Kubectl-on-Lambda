@@ -66,3 +66,18 @@ function handler () {
     
     echo $RESPONSE
 }
+
+function handler () {
+    #executables
+    openssl=/opt/bin/openssl
+    export LD_LIBRARY_PATH=/opt/lib64:$LD_LIBRARY_PATH
+    
+    #storage
+    mkdir -p /tmp/ossl
+
+    DATA1=`$openssl version`
+    
+    RESPONSE="{\"statusCode\": 200, \"body\": \"$DATA1\"}"
+    
+    echo $RESPONSE
+}

@@ -9,7 +9,7 @@ wget https://www.openssl.org/source/openssl-3.0.13.tar.gz -O openssl.tar.gz
 tar -xzvf openssl.tar.gz
 
 sudo mkdir -p /usr/local/ssl
-
+mv openssl-* openssl
 cd openssl
 
 ./Configure --prefix=/usr/local/ssl --openssldir=/usr/local/ssl \
@@ -38,5 +38,8 @@ done
 zip -r openssl_slim_layer.zip *
 
 
+# usage : make sure to mention the lib path while using
 
+#export LD_LIBRARY_PATH=/home/ec2-user/ssl/lib64:$LD_LIBRARY_PATH
 
+# make sure to have a config file while generating req , see optional.sh
