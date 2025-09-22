@@ -41,12 +41,18 @@ for file in bin/* lib64/*; do
     fi
 done
 
+sudo rm lib64/libcrypto.so lib64/libssl.so
 
+sudo rm lib64/libssl.a
+sudo rm lib64/libcrypto.a
+sudo rm -rf pkgconfig/
 
 sudo zip -r openssl_slim_layer.zip *
 
 
-# ⚠️ usage : make sure to mention the lib path while using this bacuse openssl needs this Lib file and that file will be under the /lib64 of our zip file . make sure to move to the repective folder and mention in ENV path
+# usage : make sure to mention the lib path while using
+
+# the zip file will be in /usr/local/ssl
 
 #export LD_LIBRARY_PATH=/home/ec2-user/ssl/lib64:$LD_LIBRARY_PATH
 
