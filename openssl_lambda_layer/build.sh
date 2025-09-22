@@ -1,9 +1,9 @@
-# Do it ons Amazon Linux 2023 or AL23 Docker
+# Do it on a Amazon Linux 2023 Ec2 machine with ec2-user
 sudo dnf install perl-core zlib-devel perl-FindBin perl-lib zip tar wget -y
 
 # Download OpenSSL
 # Resource : https://www.openssl.org/source/
-wget https://www.openssl.org/source/openssl-3.0.13.tar.gz -O openssl.tar.gz
+wget https://www.openssl.org/source/openssl-3.5.3.tar.gz -O openssl.tar.gz
 
 # Unzip OpenSSL
 tar -xzvf openssl.tar.gz
@@ -21,24 +21,32 @@ cd /usr/local
 
 sudo chmod +x ./ssl/bin/openssl
 
-cd ssl
+cd /usr/local/ssl
 
-rm -rf !(bin|lib64)
+shopt -s extglob
 
-rm -f ./lib64/libcrypto.a
+sudo rm -rf !(bin|lib64)
+
+sudo rm -f ./lib64/libcrypto.a
 
 # Strip symbols from binaries and libraries
 for file in bin/* lib64/*; do
     if [ -f "$file" ]; then
-        strip "$file" || true  # Continue even if stripping fails
+        # Check if it's a binary file that can be stripped
+        if file "$file" | grep -q "ELF\|executable\|shared object"; then
+            sudo strip "$file" || true
+        else
+            echo "Skipping $file (not a binary)"
+        fi
     fi
 done
 
 
-zip -r openssl_slim_layer.zip *
+
+sudo zip -r openssl_slim_layer.zip *
 
 
-# usage : make sure to mention the lib path while using
+# ⚠️ usage : make sure to mention the lib path while using this bacuse openssl needs this Lib file and that file will be under the /lib64 of our zip file . make sure to move to the repective folder and mention in ENV path
 
 #export LD_LIBRARY_PATH=/home/ec2-user/ssl/lib64:$LD_LIBRARY_PATH
 
